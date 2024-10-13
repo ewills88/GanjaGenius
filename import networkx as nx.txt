@@ -1,0 +1,20 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def create_data_map(data_sources, connections):
+    G = nx.Graph()
+    G.add_nodes_from(data_sources)
+    G.add_edges_from(connections)
+    
+    pos = nx.spring_layout(G)
+    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=500, font_size=10, font_weight='bold')
+    
+    plt.title("Data Source Connections")
+    plt.axis('off')
+    plt.show()
+
+# Example usage
+data_sources = ['CRM', 'ERP', 'HR System', 'Financial Database', 'Web Analytics']
+connections = [('CRM', 'ERP'), ('ERP', 'Financial Database'), ('HR System', 'ERP'), ('Web Analytics', 'CRM')]
+
+create_data_map(data_sources, connections)
